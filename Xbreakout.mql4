@@ -1,0 +1,103 @@
+//+------------------------------------------------------------------+
+//|                                                    XBreakOut.mq4 |
+//|                                       Copyright 2019, Sham Yusof |
+//|                                        https://www.shamyusof.com |
+//+------------------------------------------------------------------+
+#property copyright "Copyright 2019, Sham Yusof"
+#property link      "https://www.shamyusof.com"
+#property version   "1.00"
+#property strict
+
+
+extern int      TakeProfit        = 30;
+input  int      StopLoss          = 15;
+extern int      LondonOpenTime    = 10;
+
+
+
+
+int GetCandleTime(int shift)
+{
+   int result=0;
+   
+   result = TimeHour(Time[shift]);
+   return(result);
+   
+}
+
+double GetCandleOpen(int shift)
+{
+   double result=0;
+   
+   result = Open[shift];
+   return(result);
+   
+}
+
+double GetCandleClose(int shift)
+{
+   double result=0;
+   
+   result = Close[shift];
+   return(result);
+   
+}
+
+double GetCandleHigh(int shift)
+{
+   double result=0;
+   
+   result = High[shift];
+   return(result);
+   
+}
+
+double GetCandleLow(int shift)
+{
+   double result=0;
+   
+   result = Low[shift];
+   return(result);
+   
+}
+
+string GetCandleType(int shift)
+{
+   string result=0;
+   
+   if( Open[shift]>Close[shift]) result = "Bearish";
+   if( Open[shift]<Close[shift]) result = "Bullsih";
+   
+   return(result);
+}
+
+int OnInit()
+  {
+  
+
+
+   Alert("INIT RUN");
+   
+      Comment("\n\nTime : ",GetCandleTime(2),
+            "\nOpen : ",GetCandleOpen(2),
+            "\nClose : ",GetCandleClose(2),
+            "\nHigh : ",GetCandleHigh(2),
+            "\nLow : ",GetCandleLow(2),
+            "\nCandle Type : ",GetCandleType(2));
+
+   return(INIT_SUCCEEDED);
+  }
+
+void OnDeinit(const int reason)
+  {
+
+   
+  }
+
+
+void OnTick()
+  {
+  Alert("Testing");
+   
+  }
+
